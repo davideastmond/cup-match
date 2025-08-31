@@ -1,0 +1,21 @@
+.cup {
+  width: 80px;
+  height: 180px;
+}
+
+@keyframes fly-out {
+  from {
+    top: 0px;
+    opacity: 1;
+  }
+
+  to {
+    top: -180px;
+    opacity: 0;
+  }
+}
+
+.cup.fly-out {
+  position: relative;
+  animation: fly-out 0.5s forwards;
+}
