@@ -37,11 +37,10 @@ export default function Stage() {
         </button>
       </div>
       <div>
-        {matches >= 0 && (
-          <p>
-            Matches: {matches} of {solution.length}
-          </p>
-        )}
+        <p>
+          Matches: {matches} of {solution.length}
+        </p>
+
         {puzzleSolved && (
           <p className="text-green-500 font-bold">Puzzle Solved!</p>
         )}
