@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
 import type { CupColor } from "../types/cup-color";
-
+const MAX_CUP_COUNT = 8;
 type CupElementsContextType = {
   cupElements: CupColor[];
   setCupElements: (cups: CupColor[]) => void;
@@ -18,10 +18,12 @@ export const CupElementsProvider = ({ children }: { children: ReactNode }) => {
 
   const [solution, setSolution] = useState<CupColor[]>([]);
 
-  const resetCupElements = (numberOfCups: number = 8) =>
+  const resetCupElements = (numberOfCups: number = MAX_CUP_COUNT) =>
     setCupElements(shuffleCupElements(numberOfCups));
 
-  function shuffleCupElements(numberOfCups: number = 8): CupColor[] {
+  function shuffleCupElements(
+    numberOfCups: number = MAX_CUP_COUNT
+  ): CupColor[] {
     if (!numberOfCups || numberOfCups < 4)
       throw Error("Number of cups must be at least 4 and no greater than 8");
     if (numberOfCups > 8) throw Error("No more than 8 cups");
@@ -40,7 +42,7 @@ export const CupElementsProvider = ({ children }: { children: ReactNode }) => {
       .sort(() => 0.5 - Math.random()) as CupColor[];
   }
   // This generates the solution once per game.
-  function generatePuzzle(numberOfCups: number = 8) {
+  function generatePuzzle(numberOfCups: number = MAX_CUP_COUNT) {
     setSolution(shuffleCupElements(numberOfCups));
     setCupElements(shuffleCupElements(numberOfCups));
   }
