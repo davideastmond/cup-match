@@ -19,9 +19,9 @@ export const CupElementsProvider = ({ children }: { children: ReactNode }) => {
   const [solution, setSolution] = useState<CupColor[]>([]);
 
   const resetCupElements = (numberOfCups: number = 8) =>
-    setCupElements(generateShuffledCups(numberOfCups));
+    setCupElements(shuffleCupElements(numberOfCups));
 
-  function generateShuffledCups(numberOfCups: number = 8): CupColor[] {
+  function shuffleCupElements(numberOfCups: number = 8): CupColor[] {
     if (!numberOfCups || numberOfCups < 4)
       throw Error("Number of cups must be at least 4 and no greater than 8");
     if (numberOfCups > 8) throw Error("No more than 8 cups");
@@ -41,8 +41,8 @@ export const CupElementsProvider = ({ children }: { children: ReactNode }) => {
   }
   // This generates the solution once per game.
   function generatePuzzle(numberOfCups: number = 8) {
-    setSolution(generateShuffledCups(numberOfCups));
-    setCupElements(generateShuffledCups(numberOfCups));
+    setSolution(shuffleCupElements(numberOfCups));
+    setCupElements(shuffleCupElements(numberOfCups));
   }
 
   return (
