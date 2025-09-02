@@ -44,6 +44,7 @@ export default function CupCollection({
 
     const currentIndex = cupElements.indexOf(currentColor);
     const swapIndex = cupElements.indexOf(toBeSwapped);
+
     if (currentIndex !== -1 && swapIndex !== -1) {
       if (currentIndex === swapIndex) return; // No need to swap the same cup
       const newCupElements = [...cupElements];
@@ -54,14 +55,14 @@ export default function CupCollection({
       const currentCup = document.getElementById(currentColor);
       const swapCup = document.getElementById(toBeSwapped);
 
-      currentCup?.classList.add("fly-out");
-      swapCup?.classList.add("fly-out");
+      currentCup?.classList.add("lift");
+      swapCup?.classList.add("lift");
       setColorSelected(null);
 
       setTimeout(() => {
         setCupElements(newCupElements);
-        currentCup?.classList.remove("fly-out");
-        swapCup?.classList.remove("fly-out");
+        currentCup?.classList.remove("lift");
+        swapCup?.classList.remove("lift");
       }, 500);
     }
   }

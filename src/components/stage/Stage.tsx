@@ -26,10 +26,17 @@ export default function Stage() {
   };
 
   useEffect(() => {
-    const selectElement = document.getElementById(
-      "cupCount"
-    ) as HTMLSelectElement;
-    generatePuzzle(Number(selectElement.value));
+    const cupCountFromLocalStorage = localStorage.getItem("cupCount");
+    if (cupCountFromLocalStorage) {
+      const selectElement = document.getElementById(
+        "cupCount"
+      ) as HTMLSelectElement;
+
+      if (selectElement) {
+        selectElement.value = cupCountFromLocalStorage;
+      }
+      generatePuzzle(Number(selectElement.value));
+    }
   }, []);
 
   const handleRestartGame = (e: React.FormEvent<HTMLFormElement>) => {
@@ -46,10 +53,13 @@ export default function Stage() {
     setPuzzleSolved(false);
     setMatches(0);
     setAttempts(1);
+
+    // Get the value of the dropdown select and save it to local storage
+    const cupCount = document.getElementById("cupCount") as HTMLSelectElement;
+    localStorage.setItem("cupCount", cupCount.value);
   };
 
   const handleReArrange = () => {
-    console.log("Rearranging cups...");
     setCheckButtonDisabled(false);
   };
 
