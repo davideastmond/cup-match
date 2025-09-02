@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
 import type { CupColor } from "../types/cup-color";
 const MAX_CUP_COUNT = 8;
+const MIN_CUP_COUNT = 4;
 type CupElementsContextType = {
   cupElements: CupColor[];
   setCupElements: (cups: CupColor[]) => void;
@@ -24,9 +25,9 @@ export const CupElementsProvider = ({ children }: { children: ReactNode }) => {
   function shuffleCupElements(
     numberOfCups: number = MAX_CUP_COUNT
   ): CupColor[] {
-    if (!numberOfCups || numberOfCups < 4)
+    if (!numberOfCups || numberOfCups < MIN_CUP_COUNT)
       throw Error("Number of cups must be at least 4 and no greater than 8");
-    if (numberOfCups > 8) throw Error("No more than 8 cups");
+    if (numberOfCups > MAX_CUP_COUNT) throw Error("No more than 8 cups");
 
     return [
       "green",
