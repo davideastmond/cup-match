@@ -29,31 +29,40 @@ export default function CupCollection({
   function handleSelectLogic(color: CupColor) {
     if (color === colorSelected) {
       setColorSelected(null);
-    } else {
-      setColorSelected(color);
-      const currentSelectedColor = colorSelected;
-      const colorToBeSelected = color;
-      // Swap the colors if both are selected
-      if (currentSelectedColor && colorToBeSelected) {
-        swapColorPositions(currentSelectedColor, colorToBeSelected);
-      }
+      return;
+    }
+    setColorSelected(color);
+    // Swap the colors if both are selected
+    if (colorSelected && color) {
+      swapColorPositions(colorSelected, color);
     }
   }
 
   function swapColorPositions(currentColor: CupColor, toBeSwapped: CupColor) {
     //  Take the current cupElements and swap the currentColor and toBeSwapped
-    if (cupElements) {
-      const currentIndex = cupElements.indexOf(currentColor);
-      const swapIndex = cupElements.indexOf(toBeSwapped);
-      if (currentIndex !== -1 && swapIndex !== -1) {
-        if (currentIndex === swapIndex) return; // No need to swap the same cup
-        const newCupElements = [...cupElements];
-        newCupElements[currentIndex] = toBeSwapped;
-        newCupElements[swapIndex] = currentColor;
-        setCupElements(newCupElements);
-        onRearranged && onRearranged();
-      }
+    // if (!cupElements) return;
+
+    const currentIndex = cupElements.indexOf(currentColor);
+    const swapIndex = cupElements.indexOf(toBeSwapped);
+    if (currentIndex !== -1 && swapIndex !== -1) {
+      if (currentIndex === swapIndex) return; // No need to swap the same cup
+      const newCupElements = [...cupElements];
+      newCupElements[currentIndex] = toBeSwapped;
+      newCupElements[swapIndex] = currentColor;
+      onRearranged && onRearranged();
+
+      const currentCup = document.getElementById(currentColor);
+      const swapCup = document.getElementById(toBeSwapped);
+
+      currentCup?.classList.add("fly-out");
+      swapCup?.classList.add("fly-out");
       setColorSelected(null);
+
+      setTimeout(() => {
+        setCupElements(newCupElements);
+        currentCup?.classList.remove("fly-out");
+        swapCup?.classList.remove("fly-out");
+      }, 500);
     }
   }
 
