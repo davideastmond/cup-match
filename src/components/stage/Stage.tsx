@@ -52,7 +52,7 @@ export default function Stage() {
   const resetGame = () => {
     setPuzzleSolved(false);
     setMatches(0);
-    setAttempts(1);
+    setAttempts(0);
 
     // Get the value of the dropdown select and save it to local storage
     const cupCount = document.getElementById("cupCount") as HTMLSelectElement;
@@ -91,7 +91,9 @@ export default function Stage() {
       </div>
       <div className="mt-4 flex justify-end">
         <button
-          className={`${puzzleSolved ? "hidden " : " "} disabled:bg-slate-200`}
+          className={`${
+            puzzleSolved ? "hidden " : " "
+          } disabled:bg-slate-200 p-2`}
           onClick={handleCheckPuzzle}
           disabled={puzzleSolved || checkButtonDisabled}
         >
@@ -107,6 +109,7 @@ export default function Stage() {
           <div>
             <div>
               <p className="text-green-500 font-bold">Puzzle Solved!</p>
+              <p>Attempts: {attempts}</p>
             </div>
             <div>
               {/* Render the solution like pills */}
