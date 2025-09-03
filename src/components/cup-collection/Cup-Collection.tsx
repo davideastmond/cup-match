@@ -40,8 +40,6 @@ export default function CupCollection({
 
   function swapColorPositions(currentColor: CupColor, toBeSwapped: CupColor) {
     //  Take the current cupElements and swap the currentColor and toBeSwapped
-    // if (!cupElements) return;
-
     const currentIndex = cupElements.indexOf(currentColor);
     const swapIndex = cupElements.indexOf(toBeSwapped);
 
