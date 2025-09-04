@@ -15,6 +15,9 @@ export default function Stage() {
     useState<boolean>(false);
 
   const handleCheckPuzzle = () => {
+    if (!cupElements || cupElements.length === 0) return;
+    if (!solution || solution.length === 0) return;
+
     // Check if the puzzle is solved
     const { solved, matches } = checkPuzzleGuess(solution, cupElements);
     setMatches(matches);
@@ -66,23 +69,25 @@ export default function Stage() {
   return (
     <div>
       <div>
-        <form className="mb-4 flex justify-evenly" onSubmit={handleRestartGame}>
+        <form
+          className="mb-4 flex justify-evenly flex-col gap-y-4"
+          onSubmit={handleRestartGame}
+        >
           <label htmlFor="cupCount">Number of Cups: </label>
           <select
             name="cupCount"
-            className="bg-white text-black pl-2 pr-2 rounded"
+            className="bg-white text-black pl-2 pr-2 rounded border-2"
             id="cupCount"
+            defaultValue={"8"}
           >
             <option value="4">4</option>
             <option value="5">5</option>
             <option value="6">6</option>
             <option value="7">7</option>
-            <option value="8" selected>
-              8
-            </option>
+            <option value="8">8</option>
           </select>
           <button type="submit" className="bg-blue-500 text-white rounded p-2">
-            Restart Game
+            Start / Restart
           </button>
         </form>
       </div>
@@ -95,7 +100,9 @@ export default function Stage() {
             puzzleSolved ? "hidden " : " "
           } disabled:bg-slate-200 p-2`}
           onClick={handleCheckPuzzle}
-          disabled={puzzleSolved || checkButtonDisabled}
+          disabled={
+            puzzleSolved || checkButtonDisabled || solution.length === 0
+          }
         >
           Check
         </button>
