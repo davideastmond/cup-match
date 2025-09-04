@@ -88,7 +88,7 @@ export default function Stage() {
             <option value="7">7</option>
             <option value="8">8</option>
           </select>
-          <button type="submit" className="bg-blue-500 text-white rounded p-2">
+          <button type="submit" className="rounded p-2">
             Start / Restart
           </button>
         </form>
