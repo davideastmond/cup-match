@@ -66,11 +66,14 @@ export default function Stage() {
   return (
     <div>
       <div>
-        <form className="mb-4 flex justify-evenly" onSubmit={handleRestartGame}>
+        <form
+          className="mb-4 flex justify-evenly flex-col gap-y-4"
+          onSubmit={handleRestartGame}
+        >
           <label htmlFor="cupCount">Number of Cups: </label>
           <select
             name="cupCount"
-            className="bg-white text-black pl-2 pr-2 rounded"
+            className="bg-white text-black pl-2 pr-2 rounded border-2"
             id="cupCount"
           >
             <option value="4">4</option>
