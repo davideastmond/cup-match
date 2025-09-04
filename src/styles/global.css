@@ -32,6 +32,7 @@
     html {
       margin: 0;
       background-color: #242424;
+      height: 100vh;
     }
 
     h1 {
