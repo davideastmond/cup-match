@@ -73,7 +73,9 @@ export default function Stage() {
           className="mb-4 flex justify-evenly flex-col gap-y-4"
           onSubmit={handleRestartGame}
         >
-          <label htmlFor="cupCount">Number of Cups: </label>
+          <label htmlFor="cupCount" className="text-white">
+            Number of Cups:{" "}
+          </label>
           <select
             name="cupCount"
             className="bg-white text-black pl-2 pr-2 rounded border-2"
@@ -86,7 +88,7 @@ export default function Stage() {
             <option value="7">7</option>
             <option value="8">8</option>
           </select>
-          <button type="submit" className="bg-blue-500 text-white rounded p-2">
+          <button type="submit" className="rounded p-2">
             Start / Restart
           </button>
         </form>
@@ -98,7 +100,7 @@ export default function Stage() {
         <button
           className={`${
             puzzleSolved ? "hidden " : " "
-          } disabled:bg-slate-200 p-2`}
+          } disabled:bg-gray-500 p-2 disabled:text-black`}
           onClick={handleCheckPuzzle}
           disabled={
             puzzleSolved || checkButtonDisabled || solution.length === 0
@@ -108,7 +110,7 @@ export default function Stage() {
         </button>
       </div>
       <div>
-        <p>
+        <p className="text-white">
           Matches: {matches} of {solution.length}
         </p>
 
@@ -116,7 +118,7 @@ export default function Stage() {
           <div>
             <div>
               <p className="text-green-500 font-bold">Puzzle Solved!</p>
-              <p>Attempts: {attempts}</p>
+              <p className="text-green-500 font-bold">Attempts: {attempts}</p>
             </div>
             <div>
               {/* Render the solution like pills */}
