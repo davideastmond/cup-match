@@ -28,9 +28,10 @@
       color: #535bf2;
     }
 
-    body {
+    body,
+    html {
       margin: 0;
-
+      background-color: #242424;
     }
 
     h1 {
