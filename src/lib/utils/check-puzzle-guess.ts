@@ -6,10 +6,11 @@ export function checkPuzzleGuess(
 ): { solved: boolean; matches: number } {
   if (puzzle.length !== guess.length) return { solved: false, matches: 0 };
 
-  let matches = 0;
-  for (let i = 0; i < puzzle.length; i++) {
-    if (puzzle[i] === guess[i]) matches++;
-  }
-
+  const matches = guess.reduce((acc, color, index) => {
+    if (color === puzzle[index]) {
+      return acc + 1;
+    }
+    return acc;
+  }, 0);
   return { solved: matches === puzzle.length, matches };
 }
